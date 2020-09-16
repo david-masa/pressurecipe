@@ -1,17 +1,18 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+
+.wrapper
+  .container
+    .session__container__form
+      .session__container__form__title
+        %h2 ログイン
+        = link_to "新規登録はこちら", new_user_registration_path, class: 'btn'
+        %h3.bold 
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .session__container__form__email__field
+          %h3 登録しているメールアドレス
+          = f.email_field :email, autofocus: true
+        .session__container__form__password__field
+          %h3 パスワード
+          = f.password_field :password, autocomplete: "off", placeholder: "パスワード(英数字8文字以上)"
+        .session__container__form__submit__field
+          = f.submit "ログイン", class: 'btn session'
+        .session__container__form__comment
